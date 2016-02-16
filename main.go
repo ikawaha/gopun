@@ -1,9 +1,9 @@
 package main
 
 import (
-	"os"
-    "fmt"
 	"bufio"
+	"fmt"
+	"os"
 
 	"github.com/codegangsta/cli"
 	"github.com/ikawaha/kagome/tokenizer"
@@ -34,12 +34,12 @@ func main() {
 				if token.Class == tokenizer.DUMMY {
 					continue
 				}
-				yomi := token.Features()[7]
-				if yomi == "ゴラン" {
+				switch token.Features()[7] {
+				case "ゴラン":
 					fmt.Printf("Golang")
-				} else if yomi == "ゴ" {
+				case "ゴ", "ゴウ":
 					fmt.Printf("Go")
-				} else {
+				default:
 					fmt.Printf("%s", token.Surface)
 				}
 			}
